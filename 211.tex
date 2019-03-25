@@ -817,11 +817,11 @@ Separate main memory into two partitions
 \begin{itemize}
 \item \emph{Hole}: block of available memory. 
 \item OS maintains info about allocated and free partitions. 
-\item New processes get allocated memory from a large enough whole. 
+\item New processes get allocated memory from a large enough hole. 
 \end{itemize}
 Dynamic storage allocation: 
 \begin{itemize}
-\item \emph{First-fit}: allocate first whole that is big enough. 
+\item \emph{First-fit}: allocate first hole that is big enough. 
 \item \emph{Best-fit}: allocate smallest hole that is big enough (must search
 entire list, unless it is ordered). 
 \end{itemize}
