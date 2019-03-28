@@ -133,7 +133,7 @@ E\rightarrow E'\\
 \end{array}$ (where $n_{3}=n_{1}+n_{2}$). 
 \item \emph{Reflexie transitive closure}: $E\rightarrow^{*}E'$ if $E=E'$
 or there is a finite sequence $E\rightarrow E_{1}\rightarrow E_{2}\dots\rightarrow E_{k}\rightarrow E'$. 
-\item For all $E$ and $n$, $E\Downarrow n$ if and only if $E\rightarrow$ 
+\item For all $E$ and $n$, $E\Downarrow n$ if and only if $E\rightarrow^{*} n$ 
 \item \emph{Normal form}: $E$ is in normal form (irreducable) if there
 is no $E'$ s.t. $E\rightarrow E'$. 
 \end{itemize}
@@ -143,7 +143,7 @@ is no $E'$ s.t. $E\rightarrow E'$.
 \item \emph{Determinacy}: For all $E_{1}$, $E_{2}$, if $E\rightarrow E_{1}$
 and $E\rightarrow E_{2}$ then $E_{1}=E_{2}$. 
 \item \emph{Confluence}: For all $E$, $E_{1}$, $E_{2}$, if $E\rightarrow^{*}E_{1}$
-and $E\rightarrow^{*}E$ then there exists $E'$ s.t. $E_{1}\rightarrow^{*}E'$
+and $E\rightarrow^{*}E_{2}$ then there exists $E'$ s.t. $E_{1}\rightarrow^{*}E'$
 and $E_{2}\rightarrow^{*}E'$. 
 \item \emph{Unique answer}: If $E\rightarrow^{*}n_{1}$ and $E\rightarrow^{*}n_{2}$
 then $n_{1}=n_{2}$. 
