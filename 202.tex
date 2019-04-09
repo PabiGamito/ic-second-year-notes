@@ -369,17 +369,21 @@ d\left(i,j\right)=\begin{cases}
 \min\begin{cases}
 d\left(i-1,j\right)+1 & \text{(delete)}\\
 d\left(i,j-1\right)+1 & \text{(insert)}\\
-d(i-1,j-1) & \text{(no-op)}
-\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n} and \ensuremath{x_{i}=y_{j}}}\\
-\min\begin{cases}
-d\left(i-1,j\right)+1 & \text{(delete)}\\
-d\left(i,j-1\right)+1 & \text{(insert)}\\
-d(i-1,j-1)+1 & \text{(replace)}
-\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n} and \ensuremath{x_{i}\neq y_{j}}}
+d(i-1,j-1) + \textbf{1}_{(x_{i} \neq y_{i})} & \text{(replace)}
+\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n}}\\
 \end{cases}
 \]
 
+\paragraph{Example 4: Binary Knapsack Problem}
 
+Greedy choice does not work as for Fractional version. Fall back on DP.
+\[
+c[i,w]=\begin{cases}
+0                                              &  i = 0 \text{ or } w = 0          \\
+c[i-1,w]                                       &  w_{i} > w                        \\
+\text{max}(c[i-1,w], v_{i} + c[i-1,w-w_{i}])   &  i > 0 \text{ and } w_{i} \leq w  \\
+\end{cases}
+\]
 
 \section{Greedy Algorithms}
 \begin{itemize}
@@ -433,7 +437,6 @@ ACTIVITY-SELECTOR(s, f):
 \paragraph{Example 2: Fractional Knapsack Problem}
 
 \emph{Greedy choice}: choose item with maximum value per unit weight.
-
 
 \section{Randomised Algorithms}
 
