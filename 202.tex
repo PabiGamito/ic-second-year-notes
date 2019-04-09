@@ -956,14 +956,48 @@ for each node.
 = flow out. 
 \end{itemize}
 
+\paragraph{Total Flow}
+
+Flow out of source vertex
+$$
+\vert f \vert = \sum_{v \in V} f(s,v) - \sum_{v \in V} f(v,s)
+$$
+
+\paragraph{Residual Network}
+
+\[
+c_{f}(u,v) = \begin{cases}
+c(u,v) - f(u,v)   &   (u,v) \in E    \\
+f(v,u)            &   (v,u) \in E    \\
+0                 &   otherwise      \\
+\end{cases}
+\]
+
+\paragraph{Residual Capacity} of a path in the residual network.
+$$ c_{f} = min\{c_{f}(u,v) : (u,v) \text{is on p}\}\ $$
+\begin{itemize}
+\item Flow increase possible under constraints
+\item augmenting path : simple path within residual network
+\end{itemize}
+
 \paragraph{Ford-Fulkerson Method}
 
 While there exists an \emph{augmenting path} $p$ in the \emph{residual
 network}, augment flow $f$ along $p$.
 
+\paragraph{Net Flow} across cut
 
-\paragraph{Cuts}
+Cut (S, T) : partition of vertices V (disjoint).
+$$
+f(S,T) = \sum_{u \in S} \sum_{v \in T} f(u,v) - \sum_{u \in S} \sum_{v \in T} f(v,u)
+$$
+Net flow = total flow (for any cut)
 
-If $f$ is the maximum flow $G$ $\left|f\right|=c\left(S,T\right)$
-for some minimum cut $\left(S,T\right)$ in $G$. 
+\paragraph{Capacity} of a cut
+
+$$
+c(S,T) = \sum_{u \in S} \sum_{v \in T} c(u,v)
+$$
+bounded below by flow
+
 \end{document}
