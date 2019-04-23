@@ -849,16 +849,41 @@ has no $\beta$-normal form.
 \item A function is computable iff it is $\lambda$-definable. 
 \end{itemize}
 
-\paragraph{Church Numerals}
+\subsection{Church Numerals}
 
+\paragraph{Natural Numbers}
 \[
-\underline{n}\triangleq f^{n}x
+\underline{n}\triangleq \lambda f\ x. f^{n}x
 \]
+\paragraph{Arithmetic}
 \[
 \text{plus}=\lambda mnfx.m\:f\:\left(n\:f\:x\right)
 \]
 \[
 \text{mult}=\lambda mnfx.m\:\left(n\:f\right)\:x
 \]
+\[
+\text{exp}=\lambda mn.n\:m
+\]
+\paragraph{Conditional}
+\[
+\text{ifz} \triangleeq \lambda mab.m\:\left(\lambda z.b\right)\:b
+\]
+\paragraph{Pairs}
+\[
+\text{pair} \triangleeq \lambda ab.\left(\lambda p.p\:a\:b\right)
+\]
+\[
+\text{fst} = \lambda q.q\left(\lambda ab.a\right)
+\]
+\[
+\text{snd} = \lambda q.q\left(\lambda ab.b\right)
+\]
+\paragraph{Combinators}
+
+\begin{itemize}
+\item \textbf{SKI} defines a calculus onto itself
+\item \textbf{Y} combinator: fixed point operator
+\end{itemize}
 
 \end{document}

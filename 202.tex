@@ -369,17 +369,21 @@ d\left(i,j\right)=\begin{cases}
 \min\begin{cases}
 d\left(i-1,j\right)+1 & \text{(delete)}\\
 d\left(i,j-1\right)+1 & \text{(insert)}\\
-d(i-1,j-1) & \text{(no-op)}
-\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n} and \ensuremath{x_{i}=y_{j}}}\\
-\min\begin{cases}
-d\left(i-1,j\right)+1 & \text{(delete)}\\
-d\left(i,j-1\right)+1 & \text{(insert)}\\
-d(i-1,j-1)+1 & \text{(replace)}
-\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n} and \ensuremath{x_{i}\neq y_{j}}}
+d(i-1,j-1) + \textbf{1}_{(x_{i} \neq y_{i})} & \text{(replace)}
+\end{cases} & \text{if \ensuremath{i<m}, \ensuremath{j<n}}\\
 \end{cases}
 \]
 
+\paragraph{Example 4: Binary Knapsack Problem}
 
+Greedy choice does not work as for Fractional version. Fall back on DP.
+\[
+c[i,w]=\begin{cases}
+0                                              &  i = 0 \text{ or } w = 0          \\
+c[i-1,w]                                       &  w_{i} > w                        \\
+\text{max}(c[i-1,w], v_{i} + c[i-1,w-w_{i}])   &  i > 0 \text{ and } w_{i} \leq w  \\
+\end{cases}
+\]
 
 \section{Greedy Algorithms}
 \begin{itemize}
@@ -433,7 +437,6 @@ ACTIVITY-SELECTOR(s, f):
 \paragraph{Example 2: Fractional Knapsack Problem}
 
 \emph{Greedy choice}: choose item with maximum value per unit weight.
-
 
 \section{Randomised Algorithms}
 
@@ -956,14 +959,48 @@ for each node.
 = flow out. 
 \end{itemize}
 
+\paragraph{Total Flow}
+
+Flow out of source vertex
+$$
+\vert f \vert = \sum_{v \in V} f(s,v) - \sum_{v \in V} f(v,s)
+$$
+
+\paragraph{Residual Network}
+
+\[
+c_{f}(u,v) = \begin{cases}
+c(u,v) - f(u,v)   &   (u,v) \in E    \\
+f(v,u)            &   (v,u) \in E    \\
+0                 &   otherwise      \\
+\end{cases}
+\]
+
+\paragraph{Residual Capacity} of a path in the residual network.
+$$ c_{f} = min\{c_{f}(u,v) : (u,v) \text{is on p}\}\ $$
+\begin{itemize}
+\item Flow increase possible under constraints
+\item augmenting path : simple path within residual network
+\end{itemize}
+
 \paragraph{Ford-Fulkerson Method}
 
 While there exists an \emph{augmenting path} $p$ in the \emph{residual
 network}, augment flow $f$ along $p$.
 
+\paragraph{Net Flow} across cut
 
-\paragraph{Cuts}
+Cut (S, T) : partition of vertices V (disjoint).
+$$
+f(S,T) = \sum_{u \in S} \sum_{v \in T} f(u,v) - \sum_{u \in S} \sum_{v \in T} f(v,u)
+$$
+Net flow = total flow (for any cut)
 
-If $f$ is the maximum flow $G$ $\left|f\right|=c\left(S,T\right)$
-for some minimum cut $\left(S,T\right)$ in $G$. 
+\paragraph{Capacity} of a cut
+
+$$
+c(S,T) = \sum_{u \in S} \sum_{v \in T} c(u,v)
+$$
+bounded below by flow
+
 \end{document}
