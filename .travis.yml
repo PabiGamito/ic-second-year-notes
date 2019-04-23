@@ -1,10 +1,16 @@
-sudo: required
-language: generic
-services: docker
+sudo:       required
+language:   generic
+services:   docker
+
+# Docs of the options: https://github.com/Strauman/travis-latexbuild/tree/master#configuration-options
+tex-config:
+- tex-scheme=small
+- push-type=none
+- build-pattern=202.tex,211.tex,212.tex,220.tex,221.tex,231.tex,240.tex,245.tex
+#- latexmk-flags=-dvi -f
+# Specify any packages to install that texliveonfly did not catch, and add it to the list at https://tex.stackexchange.com/a/463842/98850
+# Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
+- packages=collection-langeuropean
 
 script:
-  # We use the docker image from https://hub.docker.com/r/dxjoke/tectonic-docker/
-  # Compiling only main.tex:
-  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic 202.tex; tectonic 211.tex; tectonic 212.tex; tectonic 220.tex; tectonic 221.tex; tectonic 231.tex; tectonic 240.tex; tectonic 245.tex"
-  # Compiling multiple files as well as using biber:
-#  - docker run --mount src=$TRAVIS_BUILD_DIR/src,target=/usr/src/tex,type=bind dxjoke/tectonic-docker /bin/sh -c "tectonic --keep-intermediates --reruns 0 biber-mwe.tex; biber biber-mwe; tectonic biber-mwe.tex; tectonic main.tex"
+- docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind phpirates/texlive-latexbuild:texliveonfly
